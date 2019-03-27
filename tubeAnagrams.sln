@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TubeAnagrams", "TubeAnagrams\TubeAnagrams.csproj", "{656FCA1B-0765-4B8B-82ED-1A195A137A1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TubeAnagrams.Test", "TubeAnagrams.Test\TubeAnagrams.Test.csproj", "{EEF1FB1A-DC96-4470-83DE-A659CE6FA35A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{656FCA1B-0765-4B8B-82ED-1A195A137A1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{656FCA1B-0765-4B8B-82ED-1A195A137A1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{656FCA1B-0765-4B8B-82ED-1A195A137A1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{656FCA1B-0765-4B8B-82ED-1A195A137A1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEF1FB1A-DC96-4470-83DE-A659CE6FA35A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEF1FB1A-DC96-4470-83DE-A659CE6FA35A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEF1FB1A-DC96-4470-83DE-A659CE6FA35A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEF1FB1A-DC96-4470-83DE-A659CE6FA35A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
