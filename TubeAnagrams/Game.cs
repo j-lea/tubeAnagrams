@@ -4,12 +4,11 @@ namespace tubeAnagrams
 {
     public class Game
     {
-
         private readonly ITflApi _tflApi;
         
         public Game(ITflApi tflApi)
         {
-            this._tflApi = tflApi;
+            _tflApi = tflApi;
         }
 
         public void Play()

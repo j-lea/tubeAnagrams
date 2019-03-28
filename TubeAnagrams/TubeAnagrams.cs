@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace JennysCSharpApp
+namespace tubeAnagrams
 {
     public class TubeAnagrams
     {
-        public static void Main(string[] args)
+        public TubeAnagrams(ITflApi tflApi)
         {
-            Console.Write("What tube line do you want anagrams for?");
-//            Console.ReadLine();
+            var game = new Game(tflApi);
+            game.Play();
         }
     }
 }
