@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Xunit;
 
 namespace tubeAnagrams
 {
     public class TflApi : ITflApi
     {
-        private static HttpClient Client { get; } = new HttpClient();
+//        private HttpClient Client { get; } = new HttpClient();
         private readonly string _apiUrl;
         
         public TflApi(string url)
@@ -17,14 +19,14 @@ namespace tubeAnagrams
             _apiUrl = url;
         }
 
-        public virtual string[] GetStationsForLine(string line)
+        public string[] GetStationsForLine(string line)
         {
-            Client.BaseAddress = new Uri(_apiUrl);
-            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));     
+            var client = new HttpClient {BaseAddress = new Uri(_apiUrl)};
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));     
 
             line = line.ToLower();
             
-            var response = Client.GetAsync($"line/{line}/stoppoints").Result;
+            var response = client.GetAsync($"line/{line}/stoppoints").Result;
 
             if (!response.IsSuccessStatusCode)
             {

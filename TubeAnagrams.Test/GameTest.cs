@@ -7,18 +7,18 @@ namespace tubeAnagrams.Test
 {
     public class GameTest : IDisposable
     {
-        private readonly Mock<TflApi> _mockTflApi;
-
         private const string ChosenLine = "Central";
-        private static readonly string[] MockReturnStations = new string[] {"Shepherds Bush", "White City"};
+        private static readonly string[] MockReturnStations = {"Shepherds Bush", "White City"};
 
         private readonly StringWriter _sw;
         private readonly StringReader _sr;
 
         public GameTest()
         {
-            _mockTflApi = new Mock<TflApi>(null);
-            _mockTflApi.Setup(mockTfl => mockTfl.GetStationsForLine(ChosenLine)).Returns(MockReturnStations);
+            var mockTflApi = new Mock<ITflApi>();
+            mockTflApi.Setup(mockTfl => mockTfl.GetStationsForLine(It.IsAny<string>())).Returns(MockReturnStations);
+
+            var sequentialPicker = new SequentialPicker();
 
             _sw = new StringWriter();
             _sr = new StringReader(ChosenLine);
@@ -26,7 +26,7 @@ namespace tubeAnagrams.Test
             Console.SetOut(_sw);
             Console.SetIn(_sr);
             
-            var game = new Game(_mockTflApi.Object);
+            var game = new Game(mockTflApi.Object, sequentialPicker);
             game.Play();
         }
 
@@ -44,10 +44,28 @@ namespace tubeAnagrams.Test
         {
             var consoleOutput = _sw.ToString().Split("\n");
 
-            var anagram = consoleOutput[2];
-            Assert.True(
-                TestHelpers.AreAnagrams(MockReturnStations[0], anagram) ||
-                TestHelpers.AreAnagrams(MockReturnStations[1], anagram));
+            Assert.True(TestHelpers.AreAnagrams(consoleOutput[2], MockReturnStations[0]));
+        }
+
+        [Fact]
+        public void MakesYouTryAgainWhenYouGetItWrong()
+        {
+            
+        }
+
+        private class SequentialPicker : IPicker<string>
+        {
+            private int _index;
+
+            public SequentialPicker()
+            {
+                this._index = 0;
+            }
+
+            public string Pick(string[] items)
+            {
+                return items[_index++];
+            }
         }
 
         public void Dispose()

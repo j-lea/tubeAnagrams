@@ -8,7 +8,8 @@ namespace tubeAnagrams
     {
         public TubeAnagrams(ITflApi tflApi)
         {
-            var game = new Game(tflApi);
+            var randomPicker = new RandomPicker<string>();
+            var game = new Game(tflApi, randomPicker);
             game.Play();
         }
     }
